@@ -1,0 +1,37 @@
+body {
+    background-color: #37474f;
+    color: white;
+    font-family: Consolas, monaco, monospace;
+}
+
+td {
+    padding: 0px 40px;
+}
+
+.lined{
+    background: url(http://i.imgur.com/2cOaJ.png);
+    background-attachment: local;
+    background-repeat: no-repeat;
+    padding-left: 35px;
+    padding-top: 10px;
+    border-color:#ccc;
+    color: white;
+}
+
+#submit-button {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    background-color: white;
+    padding: 10px;
+    text-decoration: none;
+    color: #008CBA;
+}
+#submit-button:hover {
+    background-color: #008CBA;
+    color: white;
+}
+
+.center {
+    text-align: center;
+}
+        

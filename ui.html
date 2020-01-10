@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <link rel="stylesheet" href="static/ui.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    </head>
+    <body>
+        <h1>{{title}}</h1>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Language: </td>
+                    <td>
+                        <select style="width: 200px;" name="lang" form="submit-code">
+                            {% for lang in languages%}
+                                {% if lang.selected %}
+                                    <option selected value="{{ lang.id }}">{{ lang.name }}</option>
+                                {% else %}
+                                    <option value="{{ lang.id }}">{{ lang.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table style="width: 100%">
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Code</p>
+                        <textarea class="lined" style="width: 100%; height: 150px;" name="code" form="submit-code">{{code}}</textarea>
+                    </td>
+                    <td>
+                        <p>Input Data</p>
+                        <textarea class="lined" style="width: 100%; height: 150px;" name="input-data" form="submit-code">{{input_data}}</textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="center"><a href="javascript:{}" id="submit-button" onclick="$('#submit-code').submit();" >Submit</a></p>
+        <form action="/" method="post" id="submit-code"></form>
+        <table style="width: 100%">
+            <tbody>
+                <tr>
+                    <td style="width: 50%">
+                        <p>Expected Output</p>
+                        <textarea class="lined" style="width: 100%; height: 150px;" name="expected-output" form="submit-code">{{expected_output}}</textarea>
+                    </td>
+                    <td style="width: 50%">
+                        <p>Actual Output</p>
+                        <textarea class="lined" style="width: 100%; height: 150px;" name="actual-output" form="submit-code">{% if actual_output %}{{actual_output}}{% endif %}</textarea>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="center">
+            <b><span>Verdict : </span>
+                {% if runtime_error %}
+                    <span style="color: red"><b>Runtime Error</b></span>
+                {% elif compile_error %}
+                    <span style="color: red"><b>Compile Error</b></span>
+                {% elif timeout_error %}
+                    <span style="color: blue"><b>Time Limit</b></span>
+                {% elif actual_output and expected_output == actual_output %}
+                    <span style="color: green">Accepted  </span><span>(Execution Time : {{ '%0.4f' | format(exec_time)}}s)</span>
+                {% else %}
+                    <span style="color: red">Wrong Answer</span>
+                {% endif %}
+            </b>
+        </p>
+    </body>
+
+</html>
